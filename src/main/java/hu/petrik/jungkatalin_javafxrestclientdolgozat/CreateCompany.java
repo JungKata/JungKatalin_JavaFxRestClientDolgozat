@@ -13,13 +13,20 @@ import java.io.IOException;
         @FXML
         private TextField ComapnyName;
         @FXML
-        private TextField CVV;
+        private Spinner<Integer> CVV;
         @FXML
         private TextField PhoneNumber;
         @FXML
         private Button submitButton;
 
+        @FXML
+        private void initialize() {
+            SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory =
+                    new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 200, 30);
+            CVV.setValueFactory(valueFactory);
+        }
 
+        @FXML
         public void submitClick(ActionEvent actionEvent) {
             String name = ComapnyName.getText().trim();
             String phone = PhoneNumber.getPromptText().trim();
@@ -33,27 +40,23 @@ import java.io.IOException;
                 return;
             }
 
-        }
+            Company company = new Company(0, name, cvv, phone);
+            Gson converter = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            String json = converter.toJson(company);
 
-        Company company = new Company(0, ComapnyName, CVV, PhoneNumber);
-        Gson converter = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-        String json = converter.toJson(company);
-
-        try
-
-        {
-            Response response = RequestHandler.post(App.BASE_URL, json);
-            if (response.getResponseCode() == 201) {
-                warning("Person added!");
-                ComapnyName.setText("");
-                PhoneNumber.setText("");
-                CVV.getValueFactory().setValue(30);
-            } else {
-                String content = response.getContent();
-                error(content);
+            try {
+                Response response = RequestHandler.post(App.BASE_URL, json);
+                if (response.getResponseCode() == 201) {
+                    warning("Person added!");
+                    ComapnyName.setText("");
+                    PhoneNumber.setText("");
+                    CVV.getValueFactory().setValue(30);
+                } else {
+                    String content = response.getContent();
+                    error(content);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch(IOException e)
-        {
-            e.printStackTrace();
         }
     }
