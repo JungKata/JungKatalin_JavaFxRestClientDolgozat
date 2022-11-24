@@ -1,12 +1,15 @@
 package hu.petrik.jungkatalin_javafxrestclientdolgozat;
+import com.google.gson.annotations.Expose;
 
 public class Company {
     private int id;
-
+    @Expose
     private String companyName;
 
+    @Expose
     private int CVV;
 
+    @Expose
     private String phoneNumber;
 
     public Company(int id, String companyName, int CVV, String phoneNumber) {

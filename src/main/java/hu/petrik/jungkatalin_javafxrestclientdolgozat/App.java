@@ -8,11 +8,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class App extends Application {
+    public static final String BASE_URL = "https://retoolapi.dev/zJDoCG/people";
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("list-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("People");
         stage.setScene(scene);
         stage.show();
     }
@@ -20,4 +22,6 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+
 }
