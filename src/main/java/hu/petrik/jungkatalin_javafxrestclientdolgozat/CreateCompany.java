@@ -17,7 +17,7 @@ import java.io.IOException;
         @FXML
         private TextField PhoneNumber;
 
-        @FXML TextField KidHave;
+        @FXML CheckBox KidHave;
         @FXML
         private Button submitButton;
 
@@ -56,7 +56,7 @@ import java.io.IOException;
                     CompanyName.setText("");
                     PhoneNumber.setText("");
                     CVV.getValueFactory().setValue(30);
-                    KidHave.getSelection();
+                    KidHave.isSelected();
                 } else {
                     String content = response.getContent();
                     error(content);

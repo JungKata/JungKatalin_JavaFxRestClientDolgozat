@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/null" fx:controller="hu.petrik.jungkatalin_javafxrestclientdolgozat.ListController">
+<VBox prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.petrik.jungkatalin_javafxrestclientdolgozat.ListController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -19,12 +19,12 @@
                 <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteClick" text="Delete" />
             </children>
         </HBox>
-        <TableView fx:id="peopleTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+        <TableView fx:id="companyTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="companyName" minWidth="50.0" prefWidth="250.0" text="CompanyName" />
-                <TableColumn fx:id="phoneNumber" minWidth="50.0" prefWidth="75.0" text="PhoneNumber" />
-                <TableColumn fx:id="cvv" minWidth="50.0" prefWidth="250.0" text="Cvv" />
-                <TableColumn fx:id="creditCard" minWidth="50.0" prefWidth="250.0" text="CreditCard"/>
+                <TableColumn fx:id="companyNameCol" minWidth="50.0" prefWidth="200.0" text="CompanyName" />
+                <TableColumn fx:id="phoneNumberCol" minWidth="50.0" prefWidth="250.0" text="PhoneNumber" />
+                <TableColumn fx:id="CVVCol" minWidth="50.0" prefWidth="150.0" text="Cvv" />
+                <TableColumn fx:id="KidHaveCol" minWidth="50.0" prefWidth="160.0" text="KidHave" />
 
 
             </columns>

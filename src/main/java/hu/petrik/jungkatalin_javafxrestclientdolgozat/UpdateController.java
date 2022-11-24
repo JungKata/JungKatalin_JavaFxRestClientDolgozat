@@ -5,10 +5,7 @@ import com.google.gson.GsonBuilder;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,7 +20,7 @@ public class UpdateController extends Controller {
     private TextField PhoneNumber;
     
     @FXML
-    private TextField KidHave;
+    private CheckBox KidHave;
     @FXML
     private Button updateButton;
 
@@ -34,7 +31,8 @@ public class UpdateController extends Controller {
         ComapnyName.setText(this.company.getCompanyName());
         PhoneNumber.setText(this.company.getPhoneNumber());
         CVV.getValueFactory().setValue(this.company.getCVV());
-        KidHave.setSelected(false);
+        KidHave.isSelected();
+
     }
 
     @FXML
@@ -57,10 +55,11 @@ public class UpdateController extends Controller {
             warning("Phone is required");
             return;
         }
-        // TODO: validate email format
+
         this.company.setCompanyName(name);
         this.company.setPhoneNumber(phone);
         this.company.setCVV(cvv);
+        this.company.setKid(kid);
         Gson converter = new Gson();
         String json = converter.toJson(this.company);
         try {

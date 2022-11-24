@@ -24,16 +24,21 @@ public class ListController extends Controller {
         @FXML
         private TableView<Company> companyTable;
         @FXML
-        private TableColumn<Company, String> comapanyNameCol;
+        private TableColumn<Company, String> companyNameCol;
         @FXML
         private TableColumn<Company, String> phoneNumberCol;
         @FXML
         private TableColumn<Company, Integer> CVVCol;
+
+        @FXML
+        private TableColumn<Company, Boolean>KidHaveCol;
+        @FXML
         private void initialize() {
                 // getName() függvény eredményét írja ki
-                comapanyNameCol.setCellValueFactory(new PropertyValueFactory<>("companyName"));
-                phoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+                companyNameCol.setCellValueFactory(new PropertyValueFactory<>("CompanyName"));
+                phoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
                 CVVCol.setCellValueFactory(new PropertyValueFactory<>("CVV"));
+                KidHaveCol.setCellValueFactory(new PropertyValueFactory<>("Kid"));
                 Platform.runLater(() -> {
                         try {loadPeopleFromServer();
                         }
@@ -48,10 +53,10 @@ public class ListController extends Controller {
                 Response response = RequestHandler.get(App.BASE_URL);
                 String content = response.getContent();
                 Gson converter = new Gson();
-                Company[] company = converter.fromJson(content, Company[].class);
+                Company[] companies = converter.fromJson(content, Company[].class);
                 companyTable.getItems().clear();
-                for (Company company1 : company) {
-                        companyTable.getItems().add(company1);
+                for (Company company : companies) {
+                        companyTable.getItems().add(company);
                 }
         }
 
@@ -91,7 +96,7 @@ public class ListController extends Controller {
                 }
                 Company selected = companyTable.getSelectionModel().getSelectedItem();
                 try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("update-people-view.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("update-view.fxml"));
                         Scene scene = new Scene(fxmlLoader.load(), 640, 480);
                         Stage stage = new Stage();
                         stage.setTitle("Update Company");
