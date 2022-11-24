@@ -21,6 +21,9 @@ public class UpdateController extends Controller {
     private Spinner<Integer> CVV;
     @FXML
     private TextField PhoneNumber;
+    
+    @FXML
+    private TextField KidHave;
     @FXML
     private Button updateButton;
 
@@ -31,6 +34,7 @@ public class UpdateController extends Controller {
         ComapnyName.setText(this.company.getCompanyName());
         PhoneNumber.setText(this.company.getPhoneNumber());
         CVV.getValueFactory().setValue(this.company.getCVV());
+        KidHave.setSelected(false);
     }
 
     @FXML
@@ -44,6 +48,7 @@ public class UpdateController extends Controller {
         String name = ComapnyName.getText().trim();
         String phone = PhoneNumber.getText().trim();
         int cvv = CVV.getValue();
+        boolean kid = KidHave.isSelected();
         if (name.isEmpty()) {
             warning("Name is required");
             return;

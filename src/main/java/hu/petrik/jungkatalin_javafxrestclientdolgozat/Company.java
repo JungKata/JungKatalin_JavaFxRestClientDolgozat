@@ -12,11 +12,15 @@ public class Company {
     @Expose
     private String phoneNumber;
 
-    public Company(int id, String companyName, int CVV, String phoneNumber) {
+    @Expose
+    private boolean kid;
+
+    public Company(int id, String companyName, int CVV, String phoneNumber, boolean kid) {
         this.id = id;
         this.companyName = companyName;
         this.CVV = CVV;
         this.phoneNumber = phoneNumber;
+        this.kid = kid;
     }
 
     public int getId() {
@@ -49,5 +53,13 @@ public class Company {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public boolean isKid() {
+        return kid;
+    }
+
+    public void setKid(boolean kid) {
+        this.kid = kid;
     }
 }

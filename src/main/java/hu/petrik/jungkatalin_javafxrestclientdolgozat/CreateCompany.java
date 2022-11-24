@@ -16,8 +16,12 @@ import java.io.IOException;
         private Spinner<Integer> CVV;
         @FXML
         private TextField PhoneNumber;
+
+        @FXML TextField KidHave;
         @FXML
         private Button submitButton;
+
+
 
         @FXML
         private void initialize() {
@@ -31,6 +35,7 @@ import java.io.IOException;
             String name = CompanyName.getText().trim();
             String phone = PhoneNumber.getText().trim();
             int cvv = CVV.getValue();
+            boolean kid = KidHave.isSelected();
             if (name.isEmpty()) {
                 warning("Name is required");
                 return;
@@ -40,7 +45,7 @@ import java.io.IOException;
                 return;
             }
 
-            Company company = new Company(0, name, cvv, phone);
+            Company company = new Company(0, name, cvv, phone, kid);
             Gson converter = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             String json = converter.toJson(company);
 
@@ -51,6 +56,7 @@ import java.io.IOException;
                     CompanyName.setText("");
                     PhoneNumber.setText("");
                     CVV.getValueFactory().setValue(30);
+                    KidHave.getSelection();
                 } else {
                     String content = response.getContent();
                     error(content);
